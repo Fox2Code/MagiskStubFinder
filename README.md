@@ -6,7 +6,7 @@ Find the Magisk stub in various ways
 
 This scan for applications that have the sames activity names as the stub
 
-In this example the strings are hardcoded but a more advanced version could
+In this example the strings are hardcoded but a more advanced version could  
 download the stub online and update it's activity names automatically
 
 The solution to fix this exploit is to change the activity id on repackages  
@@ -32,8 +32,10 @@ of the `com.google.android.gms:play-services-basement` library (Core GMS lib)
 
 The solution to fix this is to add a value named `google_play_services_version` and  
 make the meta data `com.google.android.gms.version` call `google_play_services_version`  
-also the stub need to have the file `resources.arsc` since the fact that this file  
-is missing on the stub make it easier to detect
+
+Also the stub should always have the file `resources.arsc` since the play library  
+use resource for the `com.google.android.gms.version` meta data and an absence of
+`resources.arsc` could only mean the gms library is fake (Eg: MagiskStub, MagiskManager)
 
 ## Null byte name scanner
 
@@ -41,5 +43,5 @@ Scan if the APK label contains null byte (Aka `\0`, `\u0000`, `0x00`, `0`)
 
 This is due to the repackage doing a hex patch instead of modifying the XML file properly
 
-The solution to fix this is to change how the xml file is modified to allow changing 
+The solution to fix this is to change how the xml file is modified to allow changing  
 the size of fields and resources instead of using hex patch
